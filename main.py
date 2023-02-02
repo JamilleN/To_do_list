@@ -23,36 +23,55 @@ def show():
 
 def edit(user_input = "edit"):
     if user_input == "edit":
-        num = int (input("Please enter the # to edit: "))
+        num = input("Please enter the # to edit: ")
     else:
-        num = int (user_input[5])
-    
-    #if the entered # is larger than # of items on list, 
-    #it will add a new item instead of edit the existing one
-    if num > len(todos):
-        add()
-    else:
-        num = num - 1
-        #If user only entered "edit" or the "edit + {#}", 
-        #ask for what does user want to change the task to
-        if (user_input == "edit" or len(user_input)<7):
-            new_todo = input("Please enter the new to-do: ")+"\n"
-        #If user entered more than just "add", extract the 
-        #additional info
-        else:
-            new_todo = user_input[7:]+"\n"
+        num = user_input[5]
 
-    todos[num] = new_todo
+    try:
+        int(num)
+    except:
+        error_msg()
+    else:
+        num = int(num)
+        #if the entered # is larger than # of items on list, 
+        #it will add a new item instead of edit the existing one
+        if num > len(todos):
+            add("add "+user_input[7:])
+        else:
+            num = num - 1
+            #If user only entered "edit" or the "edit + {#}", 
+            #ask for what does user want to change the task to
+            if (user_input == "edit" or len(user_input) < 7):
+                new_todo = input("Please enter the new to-do: ")+"\n"
+            #If user entered more than just "add", extract the 
+            #additional info
+            else:
+                new_todo = user_input[7:]+"\n"
+            todos[num] = new_todo
 
 
 def complete(user_input = "complete"):
     if user_input == "complete":
-        num = int (input("Please enter the # you have completed: "))
+        num = input("Please enter the # you have completed: ")
     else:
-        num = int (user_input[9])
-    num = num - 1
-    #added .strip() to remove the \n
-    print(f"----'{num+1} - {todos.pop(num).strip()}' has been marked complete----")
+        num = user_input[9]
+    
+    try:
+        int(num)
+    except:
+        error_msg()
+    else:
+        num = int(num)
+        if (num > 0 and num < len(todos)):
+            num = num - 1
+            #added .strip() to remove the \n
+            print(f"----'{num+1} - {todos.pop(num).strip()}' has been marked complete----")
+        else:
+            error_msg()
+            
+
+def error_msg():
+    print("\n----Invalid input, please try again.----\n")
 
 
 def main():
@@ -69,6 +88,7 @@ def main():
         match user_cmd:
             case "add":
                 add(user_input)
+                show()
             case "show":
                 show()
             case "edit":
@@ -80,7 +100,7 @@ def main():
             case "exit":
                 break
             case default:
-                print("----Invalid input, please try again.----")
+                error_msg()
         
         with open("user_file.txt","w") as f:
             f.writelines(todos)
