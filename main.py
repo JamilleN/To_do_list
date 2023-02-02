@@ -1,3 +1,4 @@
+open("user_file.txt","a").close()
 f=open("user_file.txt","r")
 todos = f.readlines()
 f.close()
