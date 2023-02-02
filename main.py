@@ -4,9 +4,11 @@ with open("user_file.txt","r") as f:
     todos = f.readlines()
 
 
-def add(user_input="add"):
-    if user_input=="add":
+def add(user_input = "add"):
+    if user_input == "add":
         todo = input ("Enter a to-do: ")+"\n"
+    #If user entered more than just "add", extract the 
+    #task user entered
     else:
         todo = user_input[3:].strip()+"\n"
     todos.append(todo.capitalize())
@@ -19,8 +21,8 @@ def show():
     print("---------------")
 
 
-def edit(user_input="edit"):
-    if user_input=="edit":
+def edit(user_input = "edit"):
+    if user_input == "edit":
         num = int (input("Please enter the # to edit: "))
     else:
         num = int (user_input[5])
@@ -31,16 +33,20 @@ def edit(user_input="edit"):
         add()
     else:
         num = num - 1
-        if len(user_input)==5:
+        #If user only entered "edit" or the "edit + {#}", 
+        #ask for what does user want to change the task to
+        if (user_input == "edit" or len(user_input)<7):
             new_todo = input("Please enter the new to-do: ")+"\n"
+        #If user entered more than just "add", extract the 
+        #additional info
         else:
             new_todo = user_input[7:]+"\n"
 
     todos[num] = new_todo
 
 
-def complete(user_input="complete"):
-    if user_input=="complete":
+def complete(user_input = "complete"):
+    if user_input == "complete":
         num = int (input("Please enter the # you have completed: "))
     else:
         num = int (user_input[9])
@@ -53,6 +59,8 @@ def main():
     while True:
         user_input = input ("Type add, show, edit, complete or exit\n")
         user_input = user_input.strip()
+        #Determine whether the user input has multiple commands, 
+        #if yes aquire the action user is willing to do
         if " " in user_input:
             user_cmd = user_input[:user_input.find(" ")].lower()
         else:
