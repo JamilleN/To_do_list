@@ -1,10 +1,12 @@
-#create an .txt file if there isn't one already
-open("user_file.txt","a").close()
-with open("user_file.txt","r") as f:
-    todos = f.readlines()
+def get_todos():
+    #create an .txt file if there isn't one already
+    open("user_file.txt","a").close()
+    with open("user_file.txt","r") as f:
+        todos = f.readlines()
+    return todos
 
 
-def add(user_input = "add"):
+def add(user_input = "add", todos = get_todos()):
     if user_input == "add":
         todo = input ("Enter a to-do: ")+"\n"
     #If user entered more than just "add", extract the 
@@ -12,16 +14,18 @@ def add(user_input = "add"):
     else:
         todo = user_input[3:].strip()+"\n"
     todos.append(todo.capitalize())
+    show(todos)
+    return todos
 
 
-def show():
+def show(todos = get_todos()):
     print("---------------")
     for i, item in enumerate(todos):
         print (f"{i+1} - {item}", end="")
     print("---------------")
 
 
-def edit(user_input = "edit"):
+def edit(user_input = "edit", todos=get_todos()):
     if user_input == "edit":
         num = input("P lease enter the # to edit: ")
     else:
@@ -32,7 +36,7 @@ def edit(user_input = "edit"):
         #if the entered # is larger than # of items on list, 
         #it will add a new item instead of edit the existing one
         if num > len(todos):
-            add("add "+user_input[7:])
+            add("add "+user_input[7:], todos)
         elif num > 0:
             num = num - 1
             #If user only entered "edit" or the "edit + {#}", 
@@ -48,9 +52,12 @@ def edit(user_input = "edit"):
             error_msg()
     except ValueError:
         error_msg(2)
+    
+    show(todos)
+    return todos
 
 
-def complete(user_input = "complete"):
+def complete(user_input = "complete", todos = get_todos()):
     if user_input == "complete":
         num = input("Please enter the # you have completed: ")
     else:
@@ -67,13 +74,18 @@ def complete(user_input = "complete"):
     except ValueError:
         error_msg(2)
 
+    show(todos)
+    return todos
 
-def clear():
+
+def clear(todos = get_todos()):
     todos.clear()
-    print ("Your todo list has been cleared. :)")     
+    print ("Your todo list has been cleared. :)")
+    show (todos)
+    return todos
 
 
-def error_msg(error_code=1):
+def error_msg(error_code = 1):
     match error_code:
         case 1:
             print("\n****Number is OUT OF RANGE, please try again.****\n")
@@ -81,8 +93,9 @@ def error_msg(error_code=1):
             print("\n****Please enter a NUMBER, try again.****\n")
 
 
-
 def main():
+    todos = get_todos()
+
     while True:
         user_input = input ("Type add, show, edit, complete, clear or exit\n")
         user_input = user_input.strip()
@@ -95,19 +108,15 @@ def main():
 
         match user_cmd:
             case "add":
-                add(user_input)
-                show()
+                todos = add(user_input, todos)
             case "show":
-                show()
+                show(todos)
             case "edit":
-                edit(user_input)
-                show()
+                todos = edit(user_input, todos)
             case "complete":
-                complete(user_input)
-                show()
+                todos = complete(user_input, todos)
             case "clear":
-                clear()
-                show()
+                todos = clear(todos)
             case "exit":
                 break
             case default:
