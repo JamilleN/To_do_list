@@ -30,7 +30,7 @@ def main():
             case "exit":
                 break
             case default:
-                e.error_msg()
+                e.error_msg(3)
         
     local.save_todos(todos)    
     print ("Thank you for using me :)")

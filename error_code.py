@@ -1,6 +1,8 @@
 #This file is a dir for error codes
 
-def error_msg(error_code):
+def error_msg(error_code:int):
+    """"Input a error code and print out 
+    the corresponding error msg"""
     match error_code:
         case 1:
             print("\n****Number is OUT OF RANGE, please try again.****\n")

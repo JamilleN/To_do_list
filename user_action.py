@@ -3,7 +3,9 @@
 import local_file_interac as local
 import error_code as e
 
-def add(user_input, todos):
+def add(user_input: str, todos: list) -> list:
+    """Append the to-do item at 
+    the end of the to do list"""
     if (user_input == "add" or len(user_input) == 4):
         todo = input ("Enter a to-do: ")+"\n"
     #If user entered more than just "add", extract the 
@@ -15,14 +17,16 @@ def add(user_input, todos):
     return todos
 
 
-def show(todos):
+def show(todos: list) -> None:
+    """Print out the whole to do list"""
     print("---------------")
     for i, item in enumerate(todos):
         print (f"{i+1} - {item}", end="")
     print("---------------")
 
 
-def edit(user_input, todos):
+def edit(user_input: str, todos: list) -> list:
+    """Modify the # todo item to a new todo item"""
     if user_input == "edit":
         num = input("P lease enter the # to edit: ")
     else:
@@ -54,7 +58,9 @@ def edit(user_input, todos):
     return todos
 
 
-def complete(user_input, todos):
+def complete(user_input: str, todos: list) -> list:
+    """Mark the # todo item as completed 
+    and remove from the list"""
     if user_input == "complete":
         num = input("Please enter the # you have completed: ")
     else:
@@ -75,7 +81,8 @@ def complete(user_input, todos):
     return todos
 
 
-def clear(todos):
+def clear(todos: list) -> list:
+    """Clear the whole todo list"""
     todos.clear()
     print ("Your todo list has been cleared. :)")
     show (todos)
