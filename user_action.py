@@ -1,5 +1,5 @@
-import To_do_list.local_file_interac as local
-import To_do_list.error_code as e
+import local_file_interac as local
+import error_code as e
 
 def add(user_input, todos):
     if (user_input == "add" or len(user_input) == 4):
