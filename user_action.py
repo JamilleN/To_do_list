@@ -1,3 +1,5 @@
+#This file has all the functions for user actions
+
 import local_file_interac as local
 import error_code as e
 
@@ -44,7 +46,7 @@ def edit(user_input, todos):
                 new_todo = user_input[7:]+"\n"
             todos[num] = new_todo
         else:
-            e.error_code.error_msg()
+            e.error_code.error_msg(1)
     except ValueError:
         e.error_msg(2)
     
@@ -65,7 +67,7 @@ def complete(user_input, todos):
             #added .strip() to remove the \n
             print(f"----'{num+1} - {todos.pop(num).strip()}' has been marked complete----")
         else:
-            e.error_msg()
+            e.error_msg(1)
     except ValueError:
         e.error_msg(2)
 

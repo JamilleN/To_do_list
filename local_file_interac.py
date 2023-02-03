@@ -1,3 +1,5 @@
+#This file has functions to read/write the local .txt file
+
 def get_todos():
     #create an .txt file if there isn't one already
     open("user_file.txt","a").close()
