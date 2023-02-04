@@ -6,6 +6,7 @@ A todo list program that would allow users to perform: add, edit, show, complete
 
 # Instruction
 
+### CLI version
  Follow the prompt commands. add, edit, complete could be done in one line of commands, i.e. "add do dishes", "edit 2 laundry" (will change #2 task to laundry), "complete 3" (will mark #3 task completed and remove from the list).
  
 
@@ -18,3 +19,7 @@ A todo list program that would allow users to perform: add, edit, show, complete
  **complete**: will mark the # of task completed and remove from the list.
  
  **clear**: will clear the whole todo list, remove all the items.
+
+
+ ### Desktop version
+ Using PySimpleGUI module to create a Dekstop GUI to perform all the functions can be done by using the CLI version. 
