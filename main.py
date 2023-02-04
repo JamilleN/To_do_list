@@ -1,12 +1,14 @@
 import user_action as ua
 import local_file_interac as local
 import error_code as e
-
+import time as t
+ 
 
 def main():
     todos = local.get_todos()
-
     while True:
+        now = t.strftime("%b %d, %Y (%a) - %H:%M:%S")
+        print(f"The current time is: {now}")
         user_input = input ("Type add, show, edit, complete, clear or exit\n")
         user_input = user_input.strip()
         #Determine whether the user input has multiple commands, 
@@ -32,7 +34,7 @@ def main():
             case default:
                 e.error_msg(3)
         
-    local.save_todos(todos)    
+    local.save_todos(todos)
     print ("Thank you for using me :)")
 
 
