@@ -7,7 +7,7 @@ def add(user_input: str, todos: list) -> list:
     """Append the to-do item at 
     the end of the to do list"""
     if (user_input == "add" or len(user_input) == 4):
-        todo = input ("Enter a to-do: ")+"\n"
+        todo = input ("Enter a to-do: ").strip() +"\n"
     #If user entered more than just "add", extract the 
     #task user entered
     else:
@@ -43,11 +43,11 @@ def edit(user_input: str, todos: list) -> list:
             #If user only entered "edit" or the "edit + {#}", 
             #ask for what does user want to change the task to
             if (user_input == "edit" or len(user_input) == 6):
-                new_todo = input("Please enter the new to-do: ")+"\n"
+                new_todo = input("Please enter the new to-do: ").strip()+"\n"
             #If user entered more than just "add", extract the 
             #additional info
             else:
-                new_todo = user_input[7:]+"\n"
+                new_todo = user_input[7:].strip()+"\n"
             todos[num] = new_todo
         else:
             e.error_code.error_msg(1)
