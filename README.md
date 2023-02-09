@@ -20,6 +20,7 @@ A todo list program that would allow users to perform: add, edit, show, complete
  
  **clear**: will clear the whole todo list, remove all the items.
 
+![alt-text](https://github.com/JamilleN/To_do_list/blob/e4c210900c7b497f5dae9264a653d5e47aca3d40/Gifs/CLI.gif)
 
  ### Desktop version
  By using PySimpleGUI module created a Dekstop GUI to perform all the functions can be done by using the CLI version. 
