@@ -1,5 +1,6 @@
 Do dishes
 Vaccum
-Move the car
 Wash clothes
 Grocery
+A testing item
+A testing item

@@ -22,4 +22,8 @@ A todo list program that would allow users to perform: add, edit, show, complete
 
 
  ### Desktop version
- Using PySimpleGUI module to create a Dekstop GUI to perform all the functions can be done by using the CLI version. 
+ By using PySimpleGUI module created a Dekstop GUI to perform all the functions can be done by using the CLI version. 
+
+
+ ### Web app 
+ By using Streamlit module created a Web App version of the to do list that could be deploy online and accessible through internt.
